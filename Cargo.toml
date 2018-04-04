@@ -1,0 +1,6 @@
+[package]
+name = "magnetman"
+version = "0.1.0"
+authors = ["fredrik.jonsen"]
+
+[dependencies]
