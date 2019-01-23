@@ -4,6 +4,8 @@ use ::sdl2::video::Window;
 use super::Sprite;
 use super::texture_handler::TextureHandler;
 
+const GAME_TEXTURES: &'static [&'static str] = &["Hero_Run_1_B.png"];
+
 pub struct GraphicsEngine<'a> {
     world_width: u32,
     world_height: u32,
@@ -38,11 +40,15 @@ impl <'a> GraphicsEngine<'a>  {
             }
     }
 
+    pub fn load_game_textures(&'a mut self) {
+        self.texture_handler.load_textures(GAME_TEXTURES);
+    }
+
     pub fn draw_screen(&mut self, sprites: &[&Sprite]) {
         self.canvas.clear();
 
         for s in sprites {
-            let _t = self.texture_handler.load_texture(s.texture().texture_name);
+            let _t = self.texture_handler.get_texture(s.texture().texture_name);
         }
         
     }

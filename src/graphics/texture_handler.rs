@@ -18,12 +18,17 @@ impl<'a: 'b, 'b > TextureHandler<'a> {
         }
     }
 
-    pub fn load_texture(&'a mut self, texture_name: &'static str) -> &'b Texture {
+    pub fn load_textures(&'a mut self, textures_names: &[&'static str]) {
+        for texture in textures_names {
+            let loaded_texture = self.texture_creator.load_texture(texture).expect("Failed to load texture");
+            self.loaded_textures.insert(texture, loaded_texture);
+        }
+    }
+
+
+    pub fn get_texture(&'a self, texture_name: &'static str) -> &'b Texture {
         if !self.loaded_textures.contains_key(texture_name) {
-            let loaded_texture = self.texture_creator
-                .load_texture(texture_name)
-                .expect("Failed to load texture");
-            self.loaded_textures.insert(texture_name, loaded_texture);
+            panic!{"Expected texture {} to be loaded, but no such texture found", texture_name};
         }
 
         self.loaded_textures.get(texture_name).clone().unwrap()

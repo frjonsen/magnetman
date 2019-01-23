@@ -4,5 +4,6 @@ mod graphics;
 mod physics;
 
 pub fn main() {
-    let engine = graphics::GraphicsEngine::new("test", 0,0,0,0);
+    let mut engine = graphics::GraphicsEngine::new("test", 400, 200, 400, 200);
+    engine.load_game_textures();
 }
