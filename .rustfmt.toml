@@ -1,0 +1,8 @@
+unstable_features = false
+indent_style = "Block"
+tab_spaces = 2
+condense_wildcard_suffixes = true
+fn_single_line = true
+merge_imports = true
+reorder_impl_items = true
+use_field_init_shorthand = true
